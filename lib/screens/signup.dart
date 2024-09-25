@@ -81,8 +81,8 @@ class _SignUpState extends State<SignUp> {
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            SizedBox(height: 132.5),
             _buildTextField('닉네임을 입력하세요', Icons.person, _nicknameController),
             const SizedBox(height: 16),
             _buildTextField('이메일을 입력하세요', Icons.email, _emailController),
@@ -112,21 +112,24 @@ class _SignUpState extends State<SignUp> {
               ),
             ),
             const SizedBox(height: 16),
-            TextButton(
-                onPressed: () => Navigator.pop(context),
-                child: RichText(
-                  text: TextSpan(
-                    text: '이미 계정이 있으신가요? ',
-                    style: TextStyle(
-                        color: Theme.of(context).primaryColor, fontSize: 16),
-                    children: const <TextSpan>[
-                      TextSpan(
-                        text: '로그인',
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                    ],
+            GestureDetector(
+              onTap: () => Navigator.pop(context),
+              child: RichText(
+                text: TextSpan(
+                  style: TextStyle(
+                    color: Theme.of(context).primaryColor,
+                    fontSize: 16,
                   ),
-                )),
+                  children: const [
+                    TextSpan(text: '이미 계정이 있으신가요? '),
+                    TextSpan(
+                      text: '로그인',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
+              ),
+            )
           ],
         ),
       ),

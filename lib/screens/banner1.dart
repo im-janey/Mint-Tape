@@ -13,7 +13,7 @@ class _Banner1State extends State<Banner1> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 332,
+      height: 305,
       width: 450,
       child: PageView.builder(
         controller: _pageController,

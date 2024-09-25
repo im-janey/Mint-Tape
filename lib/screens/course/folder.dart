@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart';
+import 'dart:math';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'dart:math';
-import 'package:flutter_application_1/components/navigation_bar.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_application_1/screens/course/cos.dart';
 import 'package:flutter_application_1/screens/course/final.dart';
 
@@ -13,14 +13,8 @@ class Folder extends StatefulWidget {
 }
 
 class _FolderState extends State<Folder> {
-  int _selectedIndex = 0;
   List<Map<String, dynamic>> _cards = [];
   List<String> _imagePaths = [];
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
 
   @override
   void initState() {
@@ -263,10 +257,6 @@ class _FolderState extends State<Folder> {
             }
           },
         ),
-      ),
-      bottomNavigationBar: CustomNavigationBar(
-        selectedIndex: _selectedIndex,
-        onItemTapped: _onItemTapped,
       ),
     );
   }

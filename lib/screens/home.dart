@@ -116,37 +116,49 @@ class _HomeState extends State<Home> {
           SizedBox(height: 30),
           Banner1(),
           SizedBox(height: 6),
-          Padding(
-            padding: EdgeInsets.all(30),
-            child: Card(
-              child: Padding(
-                padding: EdgeInsets.all(16),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Column(
-                      children: [
-                        _buildIconButton('assets/bob.png', Frame()),
-                        SizedBox(height: 13),
-                        _buildIconButton('assets/display.png', DisplayFrame()),
-                      ],
+          Card(
+            child: Padding(
+              padding: EdgeInsets.all(16),
+              child: Column(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                    child: TextField(
+                      decoration: InputDecoration(
+                        hintText: '어디로 갈까요?',
+                        border: OutlineInputBorder(),
+                      ),
                     ),
-                    Column(
-                      children: [
-                        _buildIconButton('assets/cafe.png', CafeFrame()),
-                        SizedBox(height: 13),
-                        _buildIconButton('assets/play.png', PlayFrame()),
-                      ],
-                    ),
-                    Column(
-                      children: [
-                        _buildIconButton('assets/park.png', ParkFrame()),
-                        SizedBox(height: 13),
-                        _buildIconButton('assets/all.png', AllPlacesFrame()),
-                      ],
-                    ),
-                  ],
-                ),
+                  ),
+                  SizedBox(height: 16),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Column(
+                        children: [
+                          _buildIconButton('assets/bob.png', Frame()),
+                          SizedBox(height: 13),
+                          _buildIconButton(
+                              'assets/display.png', DisplayFrame()),
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          _buildIconButton('assets/cafe.png', CafeFrame()),
+                          SizedBox(height: 13),
+                          _buildIconButton('assets/play.png', PlayFrame()),
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          _buildIconButton('assets/park.png', ParkFrame()),
+                          SizedBox(height: 13),
+                          _buildIconButton('assets/all.png', AllPlacesFrame()),
+                        ],
+                      ),
+                    ],
+                  ),
+                ],
               ),
             ),
           ),

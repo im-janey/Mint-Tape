@@ -1,9 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/components/navigation_bar.dart';
 import 'package:flutter_application_1/screens/favoriate.dart';
-import 'package:flutter_application_1/screens/home.dart';
 import 'package:flutter_application_1/screens/profile.dart';
 
 class Menu extends StatefulWidget {
@@ -177,15 +175,6 @@ class _MenuState extends State<Menu> {
             ),
           ),
         ],
-      ),
-      bottomNavigationBar: CustomNavigationBar(
-        selectedIndex: 1,
-        onItemTapped: (index) {
-          if (index == 0) {
-            Navigator.pushReplacement(
-                context, MaterialPageRoute(builder: (context) => Home()));
-          }
-        },
       ),
     );
   }
