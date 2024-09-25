@@ -37,6 +37,7 @@ class _Splash2State extends State<Splash2> {
             onPageChanged: (index) => setState(() => _currentPage = index),
             children: const [
               _SplashPage(
+                // TODO: 휠체어 이미지 색상 민트색으로 바꾸기
                 imagePath: 'assets/wheel1.png',
                 mainText: '휠체어 이동이 편한 장소만\n모았어요',
                 subText: '출입이 어려워 다시 돌아가는 일은 이제 그만',
@@ -86,7 +87,7 @@ class _SplashPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const SizedBox(height: 200),
+        const SizedBox(height: 220),
         Image.asset(imagePath, width: 350, height: 250),
         const SizedBox(height: 30),
         Text(
@@ -129,7 +130,9 @@ class _PageIndicator extends StatelessWidget {
           height: 8,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
-            color: index == currentPage ? const Color(0xff4863E0) : Colors.grey,
+            color: index == currentPage
+                ? Theme.of(context).primaryColor
+                : Colors.grey,
           ),
         ),
       ),
@@ -147,7 +150,7 @@ class _StartButton extends StatelessWidget {
     return TextButton(
       onPressed: onPressed,
       style: TextButton.styleFrom(
-        backgroundColor: Color(0xff4863E0),
+        backgroundColor: Theme.of(context).primaryColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(13.0),
         ),

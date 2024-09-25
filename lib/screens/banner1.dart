@@ -13,49 +13,22 @@ class _Banner1State extends State<Banner1> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 305,
-      width: 400,
-      child: PageView(
+      height: 332,
+      width: 450,
+      child: PageView.builder(
         controller: _pageController,
-        scrollDirection: Axis.horizontal,
-        children: [
-          Padding(
+        itemCount: 4,
+        itemBuilder: (context, index) {
+          return Padding(
             padding: const EdgeInsets.all(3),
             child: Card(
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(23),
               ),
-              child: Image.asset('assets/ban1.png'),
+              child: Image.asset('assets/ban${index + 1}.png'),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(3),
-            child: Card(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(23),
-              ),
-              child: Image.asset('assets/ban2.png'),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(3),
-            child: Card(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(23),
-              ),
-              child: Image.asset('assets/ban3.png'),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(3),
-            child: Card(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(23),
-              ),
-              child: Image.asset('assets/ban4.png'),
-            ),
-          ),
-        ],
+          );
+        },
       ),
     );
   }

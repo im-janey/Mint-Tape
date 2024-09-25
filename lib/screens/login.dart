@@ -1,8 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
-import 'home.dart';
-import 'signup.dart';
+import 'package:flutter_application_1/screens/home.dart';
+import 'package:flutter_application_1/screens/signup.dart';
 
 class LogIn extends StatefulWidget {
   const LogIn({super.key});
@@ -43,23 +42,29 @@ class _LogInState extends State<LogIn> {
         child: Align(
           alignment: Alignment.center,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SizedBox(
-                width: 230,
-                child: Image.asset('assets/typelogo.png'),
+                height: 120,
               ),
-              SizedBox(height: 25),
-              _buildTextField('이메일을 입력하세요', Icons.email, controller: _emailController),
+              SizedBox(
+                width: 230,
+                child: Image.asset('assets/logo.png'),
+              ),
+              SizedBox(
+                height: 40,
+              ),
+              _buildTextField('이메일을 입력하세요', Icons.email,
+                  controller: _emailController),
               const SizedBox(height: 16.0),
-              _buildTextField('비밀번호를 입력하세요', Icons.lock, controller: _passwordController, obscureText: true),
-              const SizedBox(height: 32.0),
+              _buildTextField('비밀번호를 입력하세요', Icons.lock,
+                  controller: _passwordController, obscureText: true),
+              const SizedBox(height: 40.0),
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: _logIn,
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xff4863E0), // Button color
+                    backgroundColor: Theme.of(context).primaryColor,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8.0),
                     ),
@@ -78,11 +83,11 @@ class _LogInState extends State<LogIn> {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => SignUp()),
+                      MaterialPageRoute(builder: (context) => const SignUp()),
                     );
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.grey[300], // Button color
+                    backgroundColor: Colors.grey[300],
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8.0),
                     ),
@@ -101,7 +106,8 @@ class _LogInState extends State<LogIn> {
     );
   }
 
-  Widget _buildTextField(String labelText, IconData icon, {bool obscureText = false, TextEditingController? controller}) {
+  Widget _buildTextField(String labelText, IconData icon,
+      {bool obscureText = false, TextEditingController? controller}) {
     return TextField(
       controller: controller,
       obscureText: obscureText,
@@ -115,13 +121,14 @@ class _LogInState extends State<LogIn> {
           borderSide: BorderSide.none,
         ),
         focusedBorder: OutlineInputBorder(
-          borderSide: const BorderSide(color: Color(0xff4863E0), width: 1.5),
+          borderSide:
+              BorderSide(color: Theme.of(context).primaryColor, width: 1.5),
           borderRadius: BorderRadius.circular(8.0),
         ),
         labelStyle: const TextStyle(color: Colors.grey),
-        floatingLabelStyle: const TextStyle(color: Color(0xff4863E0)),
+        floatingLabelStyle: TextStyle(color: Theme.of(context).primaryColor),
       ),
-      cursorColor: const Color(0xff4863E0),
+      cursorColor: Theme.of(context).primaryColor,
     );
   }
 }

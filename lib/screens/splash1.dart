@@ -15,6 +15,7 @@ class _Splash1State extends State<Splash1> {
   @override
   void initState() {
     super.initState();
+
     Timer(const Duration(milliseconds: 2000), () {
       Navigator.pushReplacement(
         context,
@@ -34,7 +35,7 @@ class _Splash1State extends State<Splash1> {
             SizedBox(
               width: 300,
               height: 300,
-              child: Image.asset('assets/firstlogo.png'),
+              child: Image.asset('assets/logo.png'),
             ),
           ],
         ),

@@ -15,6 +15,7 @@ class _ProfileState extends State<Profile> {
   final TextEditingController _nicknameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   String _profileImageUrl = '';
+  
   @override
   void initState() {
     super.initState();
@@ -60,12 +61,12 @@ class _ProfileState extends State<Profile> {
                 MaterialPageRoute(builder: (context) => Menu()),
               );
             },
-            child: const Padding(
+            child: Padding(
               padding: EdgeInsets.only(top: 5, right: 20),
               child: Text(
                 '완료',
                 style: TextStyle(
-                  color: Color(0xff4863E0),
+                  color: Theme.of(context).primaryColor,
                   fontSize: 17,
                   fontWeight: FontWeight.bold,
                 ),
@@ -104,8 +105,8 @@ class _ProfileState extends State<Profile> {
                     context,
                     MaterialPageRoute(
                         builder: (context) => ChangePasswordPage())),
-                child: const Text('비밀번호 변경',
-                    style: TextStyle(color: Color(0xff4863E0), fontSize: 17)),
+                child: Text('비밀번호 변경',
+                    style: TextStyle(color: Theme.of(context).primaryColor, fontSize: 17)),
               ),
             ),
           ],
@@ -117,27 +118,23 @@ class _ProfileState extends State<Profile> {
   // 텍스트 필드 위젯 생성
   Widget _buildTextField(String label, TextEditingController controller) {
     return Padding(
-        padding: EdgeInsets.only(left: 10, right: 10),
-        child: ListTile(
-          leading: Text(label,
-              style: const TextStyle(fontSize: 17, color: Colors.black)),
-          title: TextField(
-            controller: controller,
-            style: const TextStyle(color: Colors.black),
-            decoration: InputDecoration(
-              contentPadding: const EdgeInsets.symmetric(horizontal: 16.0),
-              hintText: '$label을 입력하세요',
-              hintStyle:
-                  const TextStyle(color: Color(0xFFA7A7A7), fontSize: 16),
-              focusedBorder: const UnderlineInputBorder(
-                borderSide: BorderSide(color: Color(0xff4863E0), width: 1.5),
-              ),
-              enabledBorder: const UnderlineInputBorder(
-                borderSide: BorderSide(color: Colors.grey),
-              ),
-            ),
+      padding: const EdgeInsets.only(left: 10, right: 10),
+      child: TextField(
+        controller: controller,
+        decoration: InputDecoration(
+          labelText: label,
+          border: const OutlineInputBorder(),
+          hintStyle: const TextStyle(color: Color(0xFFA7A7A7), fontSize: 16),
+          focusedBorder: UnderlineInputBorder(
+            borderSide: BorderSide(color: Theme.of(context).primaryColor, width: 1.5),
           ),
-        ));
+          floatingLabelStyle: TextStyle(color: Theme.of(context).primaryColor),
+          enabledBorder: const UnderlineInputBorder(
+            borderSide: BorderSide(color: Colors.grey),
+          ),
+        ),
+      ),
+    );
   }
 }
 
@@ -186,12 +183,12 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
               await _changePassword();
               Navigator.pop(context);
             },
-            child: const Padding(
+            child: Padding(
               padding: EdgeInsets.only(top: 5, right: 20),
               child: Text(
                 '완료',
                 style: TextStyle(
-                  color: Color(0xff4863E0),
+                  color: Theme.of(context).primaryColor,
                   fontSize: 17,
                   fontWeight: FontWeight.bold,
                 ),
@@ -217,27 +214,22 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
 
   Widget _buildPasswordField(String label, TextEditingController controller) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10),
+      padding: const EdgeInsets.only(left: 10, right: 10),
       child: TextField(
         controller: controller,
         obscureText: true,
         decoration: InputDecoration(
           labelText: label,
-          prefixIcon: Icon(Icons.lock, color: Colors.grey[600]),
-          filled: true,
-          fillColor: Colors.grey[300],
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8.0),
-            borderSide: BorderSide.none,
+          border: const OutlineInputBorder(),
+          hintStyle: const TextStyle(color: Color(0xFFA7A7A7), fontSize: 16),
+          focusedBorder: UnderlineInputBorder(
+            borderSide: BorderSide(color: Theme.of(context).primaryColor, width: 1.5),
           ),
-          focusedBorder: OutlineInputBorder(
-            borderSide: const BorderSide(color: Color(0xff4863E0), width: 1.5),
-            borderRadius: BorderRadius.circular(8.0),
+          floatingLabelStyle: TextStyle(color: Theme.of(context).primaryColor),
+          enabledBorder: const UnderlineInputBorder(
+            borderSide: BorderSide(color: Colors.grey),
           ),
-          labelStyle: const TextStyle(color: Colors.grey),
-          floatingLabelStyle: const TextStyle(color: Color(0xff4863E0)),
         ),
-        cursorColor: const Color(0xff4863E0),
       ),
     );
   }

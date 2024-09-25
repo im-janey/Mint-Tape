@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/components/navigation_bar.dart';
 import 'package:flutter_application_1/screens/all.dart';
+import 'package:flutter_application_1/screens/banner1.dart';
 import 'package:flutter_application_1/screens/map/cafe.dart';
 import 'package:flutter_application_1/screens/map/display.dart';
 import 'package:flutter_application_1/screens/map/food.dart';
 import 'package:flutter_application_1/screens/map/park.dart';
 import 'package:flutter_application_1/screens/map/play.dart';
-import 'package:flutter_application_1/screens/menu.dart';
-import 'package:flutter_application_1/screens/banner1.dart';
-import 'package:flutter_application_1/screens/search.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -18,17 +15,6 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  int _selectedIndex = 0;
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-    if (index == 1) {
-      Navigator.push(context, MaterialPageRoute(builder: (context) => Menu()));
-    }
-  }
-
   Widget _buildIconButton(String asset, Widget destination) {
     return TextButton(
       onPressed: () => Navigator.push(
@@ -45,55 +31,126 @@ class _HomeState extends State<Home> {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         toolbarHeight: 120,
-        title: Image.asset('assets/firstlogo.png', width: 200, height: 100),
+        title: Image.asset('assets/logo.png', width: 200, height: 100),
         actions: [
-          IconButton(
-            onPressed: () => Navigator.push(
-                context, MaterialPageRoute(builder: (context) => Search())),
-            icon: Icon(Icons.search, size: 30),
-            padding: EdgeInsets.only(right: 30),
+          Stack(
+            children: [
+              Builder(
+                builder: (context) => IconButton(
+                  onPressed: () => Scaffold.of(context).openEndDrawer(),
+                  icon: Icon(Icons.menu, size: 30),
+                  padding: EdgeInsets.only(top: 20, right: 30),
+                ),
+              ),
+              Positioned(
+                right: 27,
+                top: 18,
+                child: Container(
+                  width: 8,
+                  height: 8,
+                  decoration: BoxDecoration(
+                    color: Colors.red,
+                    shape: BoxShape.circle,
+                  ),
+                ),
+              ),
+            ],
           ),
         ],
       ),
+      endDrawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            DrawerHeader(
+              decoration: BoxDecoration(
+                color: Theme.of(context).primaryColor,
+              ),
+              child: Text(
+                'Menu',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 24,
+                ),
+              ),
+            ),
+            ListTile(
+              leading: Icon(Icons.home),
+              title: Text('Home'),
+              onTap: () {
+                // Handle Home tap
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.person),
+              title: Text('My Page'),
+              onTap: () {
+                // Handle My Page tap
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.settings),
+              title: Text('Settings'),
+              onTap: () {
+                // Handle Settings tap
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.logout),
+              title: Text('Logout'),
+              onTap: () {
+                // Handle Logout tap
+                Navigator.pop(context);
+              },
+            ),
+            SizedBox(height: 20),
+            Image.asset('assets/Group 317.png'),
+          ],
+        ),
+      ),
       body: Column(
         children: [
-          SizedBox(height: 15),
+          SizedBox(height: 30),
           Banner1(),
           SizedBox(height: 6),
           Padding(
             padding: EdgeInsets.all(30),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Column(
+            child: Card(
+              child: Padding(
+                padding: EdgeInsets.all(16),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    _buildIconButton('assets/bob.png', Frame()),
-                    SizedBox(height: 13),
-                    _buildIconButton('assets/display.png', DisplayFrame()),
+                    Column(
+                      children: [
+                        _buildIconButton('assets/bob.png', Frame()),
+                        SizedBox(height: 13),
+                        _buildIconButton('assets/display.png', DisplayFrame()),
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        _buildIconButton('assets/cafe.png', CafeFrame()),
+                        SizedBox(height: 13),
+                        _buildIconButton('assets/play.png', PlayFrame()),
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        _buildIconButton('assets/park.png', ParkFrame()),
+                        SizedBox(height: 13),
+                        _buildIconButton('assets/all.png', AllPlacesFrame()),
+                      ],
+                    ),
                   ],
                 ),
-                Column(
-                  children: [
-                    _buildIconButton('assets/cafe.png', CafeFrame()),
-                    SizedBox(height: 13),
-                    _buildIconButton('assets/play.png', PlayFrame()),
-                  ],
-                ),
-                Column(
-                  children: [
-                    _buildIconButton('assets/park.png', ParkFrame()),
-                    SizedBox(height: 13),
-                    _buildIconButton('assets/all.png', AllPlacesFrame()),
-                  ],
-                ),
-              ],
+              ),
             ),
           ),
         ],
-      ),
-      bottomNavigationBar: CustomNavigationBar(
-        selectedIndex: _selectedIndex,
-        onItemTapped: _onItemTapped,
       ),
     );
   }
